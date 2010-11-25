@@ -1,0 +1,14 @@
+MANIFEST
+Makefile.PL
+README
+lib/Term/ExtendedColor.pm
+t/00-load.t
+t/01-pod.t
+t/02-pod-coverage.t
+t/03-get_colors.t
+t/04-color.t
+t/05-uncolor.t
+t/06-set_color.t
+t/07-lookup.t
+
+META.yml                                 Module meta-data (added by MakeMaker)

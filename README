@@ -1,0 +1,90 @@
+                 Term::ExtendedColor version 0.12
+
+  Copyright 2010 Magnus Woldrich <magnus@trapd00r.se>. This program is free
+  software; you may redistribute it and/or modify it under the same terms as
+  Perl itself.
+
+  I welcome bug reports and patches for this package at magnus@trapd00r.se.
+
+BLURB
+
+  Term::ExtendedColor provides functions for sending so called extended escape
+  sequences, most notably colors. It can be used to set the current text
+  attributes or to apply a set of attributes to a string and reset the current
+  text attributes at the end of the string.
+
+DESCRIPTION
+
+  This module does (almost) the same thing as the core Term::ANSIColor module,
+  plus a little more. First off, as the name suggests, it handles the extended
+  colorset - that means, the ANSI colors plus 240 extra colors, building up a
+  matrix of a total of 256 colors.
+
+  Exported are functions for setting the foreground as well as background
+  colors. Other attributes are supported as well - bold, italic, underline and
+  reverse.
+
+  There are support for doing the reverse thing - uncolor data; strip it from
+  escape sequences.
+
+  Support is included for redefining colors - use with care, though.
+
+  See the POD documentation for complete details, features and usage.
+
+REQUIREMENTS
+
+  Term::ExtendedColor is written in pure Perl and has no module dependencies
+  that aren't found in Perl core.
+
+  The test suite requires the Test::More module. To check the POD documentation,
+  Test::Pod is also required.
+
+INSTALLATION
+
+  To install this module, run the following commands:
+
+  	perl Makefile.PL
+  	make
+  	make test
+  	make install
+
+HOMEPAGE AND SORCE REPOSITORY
+
+  The Term::ExtendedColor web page at:
+
+    http://github.com/trapd00r/Term-ExtendedColor
+
+  will always have the current version of this package, the current
+  documentation, and pointers to any additional resources.
+
+SUPPORT AND DOCUMENTATION
+
+  After installing, you can find documentation for this module with the
+  perldoc command.
+
+      perldoc Term::ExtendedColor
+
+  You can also look for information at:
+
+      RT, CPAN's request tracker
+          http://rt.cpan.org/NoAuth/Bugs.html?Dist=Term-ExtendedColor
+
+      AnnoCPAN, Annotated CPAN documentation
+          http://annocpan.org/dist/Term-ExtendedColor
+
+      CPAN Ratings
+          http://cpanratings.perl.org/d/Term-ExtendedColor
+
+      Search CPAN
+          http://search.cpan.org/dist/Term-ExtendedColor/
+
+
+LICENSE AND COPYRIGHT
+
+  Copyright (C) 2010 Magnus Woldrich
+
+  This program is free software; you can redistribute it and/or modify it
+  under the terms of either: the GNU General Public License as published
+  by the Free Software Foundation; or the Artistic License.
+
+  See http://dev.perl.org/licenses/ for more information.
