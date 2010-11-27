@@ -1,0 +1,7 @@
+#!/usr/bin/perl
+use strict;
+
+use Term::ExtendedColor;
+
+$\ = "\n";
+print for lookup(\@ARGV);
