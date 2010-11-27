@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:               Term-ExtendedColor
-version:            0.163
+version:            0.164
 abstract:           Color screen output using extended escape sequences
 author:
     - Magnus Woldrich <trapd00r@trapd00r.se>
