@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:               Term-ExtendedColor
-version:            0.172
+version:            0.182
 abstract:           Color screen output using extended escape sequences
 author:
     - Magnus Woldrich <trapd00r@trapd00r.se>
@@ -12,6 +12,9 @@ build_requires:
     ExtUtils::MakeMaker:  0
 requires:
     Test::More:  0
+resources:
+    bugtracker:  https://github.com/trapd00r/Term-ExtendedColor/issues
+    repository:  https://github.com/trapd00r/Term-ExtendedColor
 no_index:
     directory:
         - t
