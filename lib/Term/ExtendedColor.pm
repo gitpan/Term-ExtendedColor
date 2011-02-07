@@ -5,7 +5,7 @@ BEGIN {
   use Exporter;
   use vars qw($VERSION @ISA @EXPORT_OK %EXPORT_TAGS);
 
-  $VERSION = '0.184';
+  $VERSION = '0.185';
   @ISA     = qw(Exporter);
 
   @EXPORT_OK = qw(
@@ -498,8 +498,8 @@ Term::ExtendedColor - Color screen output using extended escape sequences
 
     # For convenience
 
-    my $bold   = bold("Bold text!");
-    my $italic = italic("Text in italic!");
+    my $bolded = bold("Bold text!");
+    my $italic = italic("Text in italics!");
 
     ## Remove all attributes from input data
     my @colored;
