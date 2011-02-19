@@ -5,13 +5,12 @@ BEGIN {
   use Exporter;
   use vars qw($VERSION @ISA @EXPORT_OK %EXPORT_TAGS);
 
-  $VERSION = '0.190';
+  $VERSION = '0.200';
   @ISA     = qw(Exporter);
 
   @EXPORT_OK = qw(
     uncolor
     get_colors
-    lookup
     autoreset
 
     fg
@@ -31,11 +30,6 @@ BEGIN {
 
 our $AUTORESET = 1;
 
-
-# There a no way to give these meaningful names.
-# The X11 rgb names doesn't match, neither does
-# any SVG or HTML colorset.
-# They are mapped from light to dark.
 
 my %color_names = (
 
@@ -244,10 +238,189 @@ my %color_names = (
   orange3   => '5;202',
   orange4   => '5;166',
   orange5   => '5;130',
+
+  # Approximations of X11 color mappings
+  # https://secure.wikimedia.org/wikipedia/en/wiki/X11_colors
+
+  aquamarine1       => '5;086',
+  aquamarine3       => '5;079',
+  blueviolet        => '5;057',
+  cadetblue1        => '5;072',
+  cadetblue2        => '5;073',
+  chartreuse1       => '5;118',
+  chartreuse2       => '5;082',
+  chartreuse3       => '5;070',
+  chartreuse4       => '5;064',
+  cornflowerblue    => '5;069',
+  cornsilk1         => '5;230',
+  darkblue          => '5;018',
+  darkcyan          => '5;036',
+  darkgoldenrod     => '5;136',
+  darkgreen         => '5;022',
+  darkkhaki         => '5;143',
+  darkmagenta1      => '5;090',
+  darkmagenta2      => '5;091',
+  darkolivegreen1   => '5;191',
+  darkolivegreen2   => '5;155',
+  darkolivegreen3   => '5;107',
+  darkolivegreen4   => '5;113',
+  darkolivegreen5   => '5;149',
+  darkorange3       => '5;130',
+  darkorange4       => '5;166',
+  darkorange1       => '5;208',
+  darkred1          => '5;052',
+  darkred2          => '5;088',
+  darkseagreen1     => '5;158',
+  darkseagreen2     => '5;157',
+  darkseagreen3     => '5;150',
+  darkseagreen4     => '5;071',
+  darkslategray1    => '5;123',
+  darkslategray2    => '5;087',
+  darkslategray3    => '5;116',
+  darkturquoise     => '5;044',
+  darkviolet        => '5;128',
+  deeppink1         => '5;198',
+  deeppink2         => '5;197',
+  deeppink3         => '5;162',
+  deeppink4         => '5;125',
+  deepskyblue1      => '5;039',
+  deepskyblue2      => '5;038',
+  deepskyblue3      => '5;031',
+  deepskyblue4      => '5;023',
+  deepskyblue4      => '5;025',
+  dodgerblue1       => '5;033',
+  dodgerblue2       => '5;027',
+  dodgerblue3       => '5;026',
+  gold1             => '5;220',
+  gold3             => '5;142',
+  greenyellow       => '5;154',
+  grey0             => '5;016',
+  grey100           => '5;231',
+  grey11            => '5;234',
+  grey15            => '5;235',
+  grey19            => '5;236',
+  grey23            => '5;237',
+  grey27            => '5;238',
+  grey30            => '5;239',
+  grey3             => '5;232',
+  grey35            => '5;240',
+  grey37            => '5;059',
+  grey39            => '5;241',
+  grey42            => '5;242',
+  grey46            => '5;243',
+  grey50            => '5;244',
+  grey53            => '5;102',
+  grey54            => '5;245',
+  grey58            => '5;246',
+  grey62            => '5;247',
+  grey63            => '5;139',
+  grey66            => '5;248',
+  grey69            => '5;145',
+  grey70            => '5;249',
+  grey74            => '5;250',
+  grey7             => '5;233',
+  grey78            => '5;251',
+  grey82            => '5;252',
+  grey84            => '5;188',
+  grey85            => '5;253',
+  grey89            => '5;254',
+  grey93            => '5;255',
+  honeydew2         => '5;194',
+  hotpink2          => '5;169',
+  hotpink3          => '5;132',
+  hotpink           => '5;205',
+  indianred1        => '5;203',
+  indianred         => '5;167',
+  khaki1            => '5;228',
+  khaki3            => '5;185',
+  lightcoral        => '5;210',
+  lightcyan1        => '5;195',
+  lightcyan3        => '5;152',
+  lightgoldenrod1   => '5;227',
+  lightgoldenrod2   => '5;186',
+  lightgoldenrod3   => '5;179',
+  lightgreen        => '5;119',
+  lightpink1        => '5;217',
+  lightpink3        => '5;174',
+  lightpink4        => '5;095',
+  lightsalmon1      => '5;216',
+  lightsalmon3      => '5;137',
+  lightsalmon3      => '5;173',
+  lightseagreen     => '5;037',
+  lightskyblue1     => '5;153',
+  lightskyblue3     => '5;109',
+  lightskyblue3     => '5;110',
+  lightslateblue    => '5;105',
+  lightslategrey    => '5;103',
+  lightsteelblue1   => '5;189',
+  lightsteelblue3   => '5;146',
+  lightsteelblue    => '5;147',
+  lightyellow3      => '5;187',
+  mediumorchid1     => '5;171',
+  mediumorchid3     => '5;133',
+  mediumorchid      => '5;134',
+  mediumpurple1     => '5;141',
+  mediumpurple2     => '5;135',
+  mediumpurple3     => '5;097',
+  mediumpurple4     => '5;060',
+  mediumpurple      => '5;104',
+  mediumspringgreen => '5;049',
+  mediumturquoise   => '5;080',
+  mediumvioletred   => '5;126',
+  mistyrose1        => '5;224',
+  mistyrose3        => '5;181',
+  navajowhite1      => '5;223',
+  navajowhite3      => '5;144',
+  navyblue          => '5;017',
+  orangered1        => '5;202',
+  orchid1           => '5;213',
+  orchid2           => '5;212',
+  orchid            => '5;170',
+  palegreen1        => '5;121',
+  palegreen3        => '5;077',
+  paleturquoise1    => '5;159',
+  paleturquoise4    => '5;066',
+  palevioletred1    => '5;211',
+  pink1             => '5;218',
+  pink3             => '5;175',
+  plum1             => '5;219',
+  plum2             => '5;183',
+  plum3             => '5;176',
+  plum4             => '5;096',
+  purple            => '5;129',
+  rosybrown         => '5;138',
+  royalblue1        => '5;063',
+  salmon1           => '5;209',
+  sandybrown        => '5;215',
+  seagreen1         => '5;084',
+  seagreen2         => '5;083',
+  seagreen3         => '5;078',
+  skyblue1          => '5;117',
+  skyblue2          => '5;111',
+  skyblue3          => '5;074',
+  slateblue1        => '5;099',
+  slateblue3        => '5;061',
+  springgreen1      => '5;048',
+  springgreen2      => '5;042',
+  springgreen3      => '5;035',
+  springgreen4      => '5;029',
+  steelblue1        => '5;075',
+  steelblue3        => '5;068',
+  steelblue         => '5;067',
+  tan               => '5;180',
+  thistle1          => '5;225',
+  thistle3          => '5;182',
+  turquoise2        => '5;045',
+  turquoise4        => '5;030',
+  violet            => '5;177',
+  wheat1            => '5;229',
+  wheat4            => '5;101',
+
 );
 
-our $FG;
-our $BG;
+
+our $fg_called;
+our $bg_called;
 
 my $fg = "\e[38;";
 my $bg = "\e[48;";
@@ -259,7 +432,7 @@ sub fg {
   if(!@_) {
     return("\e[m");
   }
-  $FG = 1;
+  $fg_called = 1;
   _color(@_);
 }
 
@@ -270,81 +443,23 @@ sub bg {
     return("\e[m");
   }
 
-  $BG = 1;
+  $bg_called = 1;
   _color(@_);
 }
 
 
-sub bold       { $FG = 1; _color('bold',      @_); }
-sub italic     { $FG = 1; _color('italic',    @_); }
-sub underline  { $FG = 1; _color('underline', @_); }
-sub inverse    { $FG = 1; _color('inverse',   @_); }
+sub bold       { $fg_called = 1; _color('bold',      @_); }
+sub italic     { $fg_called = 1; _color('italic',    @_); }
+sub underline  { $fg_called = 1; _color('underline', @_); }
+sub inverse    { $fg_called = 1; _color('inverse',   @_); }
 sub get_colors { return \%color_names; }
 sub clear      { return "\e[m"; }
-
-
-# lookup(232) - gray24
-# lookup('\e[38;5;191m') - yellow7
-
-sub lookup {
-  # Trying to lookup stuff like '\e[38;5;100mfoobar\e[0m' will NOT work
-  # and will return undef
-  my $color = shift;
-
-  my @colors = ();
-  if(ref($color) eq 'ARRAY') {
-    push(@colors, @{$color});
-  }
-  else {
-    push(@colors, $color);
-  }
-
-  for my $esc_str(@colors) {
-
-    # Handle \e[38;5;100m type args
-    $esc_str =~ s/^\e\[(?:3|4)8;//m;
-    $esc_str =~ s/m$//m;
-
-    # We are padding numbers < 100 with zeroes.
-    # Handle this here.
-    $esc_str =~ s/^5?;?0+(\d+)$/$1/m;
-
-    # Make sure this is really a number before padding
-    if(($esc_str =~ /^\d+$/m) and ($esc_str < 100)) {
-      $esc_str = sprintf("%03d", $esc_str);
-    }
-
-    # Add the '5;' part again, so we can look it up in the table
-    if($esc_str =~ /^\d+$/m) {
-      $esc_str = "5;$esc_str";
-    }
-  }
-
-
-  my %lookup = reverse(%color_names);
-
-  if(scalar(@colors) == 1) {
-    my $found_str = join('', @colors);
-    return((exists($lookup{$found_str})) ? $lookup{$found_str} : undef);
-  }
-  else {
-    my @result;
-    for(@colors) {
-      if(exists($lookup{$_})) {
-        push(@result, $lookup{$_});
-      }
-    }
-    return @result;
-  }
-}
 
 
 sub _color {
   my($color_str, $data) = @_;
 
   my $access_by_numeric_index = 0;
-
-  $color_str =~ s/grey/gray/m; # Alternative spelling
 
   # No key found in the table, and not using a valid number.
   # Return data if any, else the invalid color string.
@@ -353,7 +468,7 @@ sub _color {
   }
 
   # Foreground or background?
-  ($start) = ($FG)        ? "\e[38;" : "\e[48;";
+  ($start) = ($fg_called) ? "\e[38;" : "\e[48;";
   ($end)   = ($AUTORESET) ? "\e[m"  : '';
 
   # Allow access to not defined color values: fg(221);
@@ -405,7 +520,7 @@ sub _color {
   }
 
   # Restore state
-  ($FG, $BG) = (0, 0);
+  ($fg_called, $bg_called) = (0, 0);
 
   return (wantarray()) ? (@output) : (join('', @output));
 }
@@ -422,9 +537,6 @@ sub uncolor {
     # Test::More enables warnings..
     if(defined($_)) {
       $_ =~ s/\e\[[0-9;]*m//gm;
-
-      #s/\e\[(?:3|4)8;(?:;[0-9]+)?(;[0-9]+)m//g;
-      #s/(?:\e|\033)\[[01234567]m//g;
     }
   }
   return (wantarray()) ? @data : join('', @data);
@@ -463,8 +575,8 @@ Term::ExtendedColor - Color screen output using extended escape sequences
 
     ## Foreground colors
 
-    print fg 'green15', "this is bright green foreground\n";
-    my $red_text = fg('red2', "this is in red");
+    my $red_text = fg('red2', 'this is in red');
+    my $spring   = fg('springgreen3', 'this is green');
 
     ## Background colors
 
@@ -509,16 +621,6 @@ Term::ExtendedColor - Color screen output using extended escape sequences
     print "$_\n" for @colored;
     print "$_\n" for uncolor(@colored);
 
-    ## Look up all mapped colors and print them in color
-
-    for(0..255) {
-      my $color_str = lookup($_);
-      if(defined($color_str)) {
-        printf("%25s => %s\n", fg($color_str, $color_str), $_);
-      }
-    }
-
-
 =head1 DESCRIPTION
 
 B<Term::ExtendedColor> provides functions for sending so called extended escape
@@ -545,6 +647,8 @@ Returns:    $string | \@strings
 
   my $green = fg('green2', 'green foreground');
   my @blue  = fg('blue4',  ['takes arrayrefs as well']);
+
+  my $x_color = fg('mediumorchid1', 'Using mappings from the X11 rgb.txt');
 
   my $arbitary_color = fg(4, 'This is colored in the fifth ANSI color');
 
@@ -587,26 +691,6 @@ Returns:    $string | \@strings
   my @no_color = uncolor(\@colored);
 
 strips the input data from escape sequences.
-
-=head2 lookup()
-
-Parameters: $string | \@strings
-
-Returns:    $string | \@strings
-
-  my $str = lookup(255); # gray1
-
-  my $fg  = fg('red4');
-  $str    = lookup($str);
-
-  my $data   = [197, 220, 148..196];
-  my @result = lookup($data);
-
-look up argument in a reverse table. Argument can be either a full escape
-sequence or a number. Alternatively, you may pass a reference to an array as
-the first argument.
-
-Returns undef if no such attribute exists.
 
 =head2 get_colors()
 
@@ -696,17 +780,17 @@ finding one that doesn't. :)
 
 * Previously needed a patch. Full support was added in version 9.09.
 
-There's no way to give these extended color meaninful names.
+There's no way to give these extended colors meaningful names.
 
 Our first thought was to map them against some standard color names, like those
 in the HTML 4.0 specification or the SVG one. They didn’t match.
 
-Then I thought of the X11 color names – they surely must match!
-Nope.
-
 Therefore, they are named by their base color (red, green, magenta) plus index;
 The first index (always 1) is the brightest shade of that particular color,
 while the last index is the darkest.
+
+It's also possible to use some X color names, as defined in C<rgb.txt>. Do note
+that the color values do not match exactly; it's just an approximation.
 
 A full list of available color can be retrieved with C<get_colors()>.
 Here's a full list for referencce;
@@ -723,7 +807,7 @@ Here's a full list for referencce;
   reverse, inverse, negative  reverse video
   conceal                     conceal, or hide (not widely supported)
 
-=head2 Colors
+=head2 Standard color map
 
   FIRST       LAST
 
@@ -736,6 +820,182 @@ Here's a full list for referencce;
   purple1     purple30
   yellow1     yellow18
   magenta1    magenta26
+
+=head2 X color names
+
+  aquamarine1
+  aquamarine3
+  blueviolet
+  cadetblue1
+  cadetblue2
+  chartreuse1
+  chartreuse2
+  chartreuse3
+  chartreuse4
+  cornflowerblue
+  cornsilk1
+  darkblue
+  darkcyan
+  darkgoldenrod
+  darkgreen
+  darkkhaki
+  darkmagenta1
+  darkmagenta2
+  darkolivegreen1
+  darkolivegreen2
+  darkolivegreen3
+  darkolivegreen4
+  darkolivegreen5
+  darkorange3
+  darkorange4
+  darkorange1
+  darkred1
+  darkred2
+  darkseagreen1
+  darkseagreen2
+  darkseagreen3
+  darkseagreen4
+  darkslategray1
+  darkslategray2
+  darkslategray3
+  darkturquoise
+  darkviolet
+  deeppink1
+  deeppink2
+  deeppink3
+  deeppink4
+  deepskyblue1
+  deepskyblue2
+  deepskyblue3
+  deepskyblue4
+  deepskyblue4
+  dodgerblue1
+  dodgerblue2
+  dodgerblue3
+  gold1
+  gold3
+  greenyellow
+  grey0
+  grey100
+  grey11
+  grey15
+  grey19
+  grey23
+  grey27
+  grey30
+  grey3
+  grey35
+  grey37
+  grey39
+  grey42
+  grey46
+  grey50
+  grey53
+  grey54
+  grey58
+  grey62
+  grey63
+  grey66
+  grey69
+  grey70
+  grey74
+  grey7
+  grey78
+  grey82
+  grey84
+  grey85
+  grey89
+  grey93
+  honeydew2
+  hotpink2
+  hotpink3
+  hotpink
+  indianred1
+  indianred
+  khaki1
+  khaki3
+  lightcoral
+  lightcyan1
+  lightcyan3
+  lightgoldenrod1
+  lightgoldenrod2
+  lightgoldenrod3
+  lightgreen
+  lightpink1
+  lightpink3
+  lightpink4
+  lightsalmon1
+  lightsalmon3
+  lightsalmon3
+  lightseagreen
+  lightskyblue1
+  lightskyblue3
+  lightskyblue3
+  lightslateblue
+  lightslategrey
+  lightsteelblue1
+  lightsteelblue3
+  lightsteelblue
+  lightyellow3
+  mediumorchid1
+  mediumorchid3
+  mediumorchid
+  mediumpurple1
+  mediumpurple2
+  mediumpurple3
+  mediumpurple4
+  mediumpurple
+  mediumspringgreen
+  mediumturquoise
+  mediumvioletred
+  mistyrose1
+  mistyrose3
+  navajowhite1
+  navajowhite3
+  navyblue
+  orangered1
+  orchid1
+  orchid2
+  orchid
+  palegreen1
+  palegreen3
+  paleturquoise1
+  paleturquoise4
+  palevioletred1
+  pink1
+  pink3
+  plum1
+  plum2
+  plum3
+  plum4
+  purple
+  rosybrown
+  royalblue1
+  salmon1
+  sandybrown
+  seagreen1
+  seagreen2
+  seagreen3
+  skyblue1
+  skyblue2
+  skyblue3
+  slateblue1
+  slateblue3
+  springgreen1
+  springgreen2
+  springgreen3
+  springgreen4
+  steelblue1
+  steelblue3
+  steelblue
+  tan
+  thistle1
+  thistle3
+  turquoise2
+  turquoise4
+  violet
+  wheat1
+  wheat4
 
 =head1 SEE ALSO
 
@@ -754,7 +1014,7 @@ None required yet.
 
 =head1 COPYRIGHT
 
-Copyright 2010, 2011 the B<Term::ExtendedColors> L</AUTHOR> and L</CONTRIBUTORS>
+Copyright 2010, 2011 the B<Term::ExtendedColor> L</AUTHOR> and L</CONTRIBUTORS>
 as listed above.
 
 =head1 LICENSE
