@@ -97,7 +97,7 @@ colored-dmesg - colorize the dmesg output
 =head1 DESCRIPTION
 
 colored_dmesg demonstrates the color functions exported by
-Term::ExtendedColor.
+L<Term::ExtendedColor>.
 
 =head1 AUTHOR
 
@@ -110,7 +110,5 @@ Report bugs to trapd00r@trapd00r.se
 =head1 COPYRIGHT
 
 Copyright (C) 2010 Magnus Woldrich
-
-License GPLv2
 
 =cut
